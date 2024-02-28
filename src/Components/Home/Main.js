@@ -1,6 +1,7 @@
 // import react library from react in to this js file
 
 import React from 'react';
+//outlet is used to render the content of nested routes
 import { Outlet } from 'react-router-dom';
 import Header from "./Header";
 import Footer from "./Footer";

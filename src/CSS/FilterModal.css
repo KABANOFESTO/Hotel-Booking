@@ -33,7 +33,11 @@
   border-radius: 5px;
   width: 50rem;
   font-family: "Poppins", sans-serif;
+  overflow-y: auto;
+  position: relative;
+  max-height: 95vh;
 }
+
 .modal-content h4 {
   text-align: center;
   font-weight: 500;
@@ -91,6 +95,7 @@ label {
 .input-range__label {
   color: #0b0a0a;
 }
+
 .selectable-box {
   display: inline-flex;
   align-items: center;
@@ -102,7 +107,8 @@ label {
 }
 
 .selectable-box.selected {
-  border-color: #428bca; /* Color when selected */
+  border-color: #428bca;
+  /* Color when selected */
 }
 
 .amenities-checkboxes {
@@ -140,6 +146,7 @@ label {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .icon-box {
   padding-left: 2rem;
 }
