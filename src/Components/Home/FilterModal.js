@@ -120,7 +120,7 @@ const FilterModal = ({ selectedFilters, onFilterChange, onClose }) => {
     {
       value: "Washing Machine",
       label: "Washing Machine",
-      icon: "local_laundary_service"
+      icon: "local_laundry_service"
     },
     {
       value: "Tv",
@@ -243,7 +243,7 @@ const FilterModal = ({ selectedFilters, onFilterChange, onClose }) => {
               {amenitiesOptions.map((Options) => (
                 <div
                   key={Options.value}
-                  className="aminity-checkbox">
+                  className="amenity-checkbox">
                   {console.log(amenities.includes(Options.value))
                   }
                   <input
@@ -261,18 +261,22 @@ const FilterModal = ({ selectedFilters, onFilterChange, onClose }) => {
           {/* Filter action button  */}
           <div className='filter-buttons'>
             <button className='clear-button' onClick={handleClearFilters}>
-              {""}
-              clear
+              Clear
             </button>
             <button onClick={handlFilterChange}>
               Apply Filters
             </button>
           </div>
-
         </div>
       </div>
     </div>
   );
 };
 
-export default FilterModal
+FilterModal.prototype = {
+  selectedFilters: PropTypes.object.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+}
+
+export default FilterModal;

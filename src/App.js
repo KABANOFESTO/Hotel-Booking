@@ -1,4 +1,5 @@
 import './App.css';
+import PropertyList from './Components/Home/PropertyList';
 //importing necessary components and functions from the react-router-dom library for routing.
 
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
@@ -14,6 +15,7 @@ function App() {
       //exact properties ensure that the route matches exactly what u gave in path
 
       <Route path='/' element={<Main />} exact>
+        <Route path='/' element={<PropertyList />} exact />
       </Route>
     )
   )
@@ -21,6 +23,7 @@ function App() {
     <div className="App">
       {/* this ensures that the routing functionality is available*/}
       <RouterProvider router={router} />
+
     </div>
   )
 }
