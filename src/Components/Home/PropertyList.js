@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProperties } from '../../Store/Property/property-action';
+import { propertyAction } from '../../Store/Property/property-slice';
+
 const Card = ({ image, address, price, name }) => {
     return (
         <figure className='property'>
-            <img src={image} alt='Propertyimg'/>        
+            <img src={image} alt='Propertyimg' />
             <h4>{name}</h4>
             <figcaption>
                 <main className='propertdetails'>
@@ -25,35 +29,51 @@ const Card = ({ image, address, price, name }) => {
 }
 
 const PropertyList = () => {
-    const cardsData = [
-        {
-            id: 1,
-            image: "/assets/image1.jpeg",
-            name: "House Manali",
-            address: "Manali,Hinachal Pradesh, India",
-            price: 1999,
-        },
-        {
-            id: 2,
-            image: "/assets/property2.webp",
-            name: "Villa Home",
-            address: "Coorg, India",
-            Price: 4000,
-        }
-    ]
+    const [currentPage, setCurrentPage] = useState({ page: 1 });
+    const { properties, totalProperties } = useSelector(
+        (state) => state.properties
+    );
+    const lastPage = Math.ceil(totalProperties / 12);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const fetchProperties = async (page) => {
+            dispatch(propertyAction.updateSearchParams(page));
+            dispatch(getAllProperties());
+        };
+        fetchProperties(currentPage);
+    }, [currentPage, dispatch]);
+
     return (
-        <div className='propertylist'>
-            {cardsData.map((card) =>
-                <Card
-                    Key={card.id}
-                    image={card.image}
-                    name={card.name}
-                    address={card.address}
-                    price={card.price}
-                />
-            )}
-        </div>
+        <>
+            {
+                properties.length === 0 ? (
+                    <p className='not_found'>"Properties not found...."</p>
+                ) : (
+                    <div className='propertylist'>
+                        {properties.map(property =>
+                            <Card
+                                Key={property._id}
+                                id={property._id}
+                                image={property.images[0].url}
+                                name={property.propertyName}
+                                address={`${property.address.city},${property.address.state},${property.address.pincode}`}
+                                price={property.price}
+                            />
+                        )}
+                    </div>
+                )
+            }
+            <div className='pagination'>
+                <button
+                    onClick={() => setCurrentPage({ page: ProgressEvent.page - 1 })}
+
+                >
+                </button>
+
+            </div>
+        </>
     )
 }
 
-export default PropertyList      
+export default PropertyList;      
