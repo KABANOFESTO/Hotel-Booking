@@ -1,9 +1,30 @@
-import React, { useState } from 'react'
-import { DatePicker, Space } from "antd"
+import React, { useState } from 'react';
+import { DatePicker, Space } from "antd";
+import { useDispatch } from 'react-redux';
+import { getAllProperties } from '../../Store/Property/property-action';
+import { propertyAction } from '../../Store/Property/property-slice';
+
 const Search = () => {
     const { RangePicker } = DatePicker;
     const [keyword, setKeyword] = useState({});
+
+    //storing the data range value
     const [value, setValue] = useState([]);
+
+    const dispatch = useDispatch();
+    function searchHandler(e) {
+        e.preventDefault();
+        dispatch(propertyAction.updateSearchParams(keyword));
+        dispatch(getAllProperties());
+        setKeyword({
+            city: "",
+            guest: "",
+            dateIn: "",
+            dateOut: "",
+        });
+        setValue([]);
+    }
+
     function returnDates(Date, dateString) {
         setValue([Date[0], Date[1]]);
         updateKeyword("dateIn", dateString[0]);
@@ -47,7 +68,10 @@ const Search = () => {
                     value={keyword.guest}
                     onChange={(e) => updateKeyword("guests", e.target.value)}
                 />
-                <span className="material-symbols-outlined searchicon">
+                {/* search icon */}
+                <span className="material-symbols-outlined searchicon"
+                    onClick={searchHandler}
+                >
                     search
                 </span>
             </div>

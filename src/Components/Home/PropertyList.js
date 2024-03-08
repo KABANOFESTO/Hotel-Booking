@@ -41,7 +41,7 @@ const PropertyList = () => {
             dispatch(getAllProperties());
         };
         fetchProperties(currentPage);
-    }, [currentPage, dispatch]);                                                                               
+    }, [currentPage, dispatch]);
 
     return (
         <>
@@ -61,14 +61,29 @@ const PropertyList = () => {
                             />
                         )}
                     </div>
-                )
-            }
+                )}
+            {/* pagination control*/}
             <div className='pagination'>
+                {/* previous button */}
                 <button
-                    onClick={() => setCurrentPage({ page: ProgressEvent.page - 1 })}
+                    className='previous_btn'
+                    onClick={() => setCurrentPage((prev) => ({ page: prev.page - 1 }))}
+                    disabled={currentPage.page === 1} //disabling the previous button if you are in first page
                 >
+                    <span class="material-symbols-outlined">
+                        arrow_back_ios
+                    </span>
                 </button>
-
+                {/* next button*/}
+                <button
+                    className='next_btn'
+                    onClick={() => setCurrentPage((prev) => ({ page: prev.page + 1 }))}
+                    disabled={properties.length < 12 || currentPage.page === lastPage} //disabling the previous button if you are in first page
+                >
+                    <span class="material-symbols-outlined">
+                        arrow_forward_ios
+                    </span>
+                </button>
             </div>
         </>
     )
