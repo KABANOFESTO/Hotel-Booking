@@ -31,8 +31,7 @@ const Card = ({ image, address, price, name }) => {
 const PropertyList = () => {
     const [currentPage, setCurrentPage] = useState({ page: 1 });
     const { properties, totalProperties } = useSelector(
-        (state) => state.properties
-    );
+        (state) => state.properties);
     const lastPage = Math.ceil(totalProperties / 12);
     const dispatch = useDispatch();
 
@@ -42,18 +41,18 @@ const PropertyList = () => {
             dispatch(getAllProperties());
         };
         fetchProperties(currentPage);
-    }, [currentPage, dispatch]);
+    }, [currentPage, dispatch]);                                                                               
 
     return (
         <>
             {
                 properties.length === 0 ? (
-                    <p className='not_found'>"Properties not found...."</p>
+                    <p className='not_found'>Properties not found....</p>
                 ) : (
                     <div className='propertylist'>
                         {properties.map(property =>
                             <Card
-                                Key={property._id}
+                                key={property._id}
                                 id={property._id}
                                 image={property.images[0].url}
                                 name={property.propertyName}
@@ -67,7 +66,6 @@ const PropertyList = () => {
             <div className='pagination'>
                 <button
                     onClick={() => setCurrentPage({ page: ProgressEvent.page - 1 })}
-
                 >
                 </button>
 
@@ -76,4 +74,4 @@ const PropertyList = () => {
     )
 }
 
-export default PropertyList;      
+export default PropertyList; 

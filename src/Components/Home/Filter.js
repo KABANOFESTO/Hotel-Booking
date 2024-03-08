@@ -27,7 +27,7 @@ const Filter = () => {
     return (
         <>
             {/* Click event to open Modal */}
-            <span class="material-symbols-outlined filter" onClick={handleOpenModal}>
+            <span className="material-symbols-outlined filter" onClick={handleOpenModal}>
                 tune
             </span>
             {isModalOpen && (

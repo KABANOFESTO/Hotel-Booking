@@ -12,7 +12,7 @@ const Header = () => {
                     <Search />
                     <Filter />
                 </div>
-                <span class="material-symbols-outlined web_logo">
+                <span className="material-symbols-outlined web_logo">
                     account_circle
                 </span>
             </nav>

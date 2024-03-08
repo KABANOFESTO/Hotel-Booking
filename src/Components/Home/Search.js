@@ -47,7 +47,7 @@ const Search = () => {
                     value={keyword.guest}
                     onChange={(e) => updateKeyword("guests", e.target.value)}
                 />
-                <span class="material-symbols-outlined searchicon">
+                <span className="material-symbols-outlined searchicon">
                     search
                 </span>
             </div>
