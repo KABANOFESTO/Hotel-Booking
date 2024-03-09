@@ -2,7 +2,7 @@ import React from 'react'
 import Search from './Search'
 import Filter from './Filter';
 import { Link } from "react-router-dom";
-import { UseDispatch, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { propertyAction } from '../../Store/Property/property-slice';
 import { getAllProperties } from '../../Store/Property/property-action';
 

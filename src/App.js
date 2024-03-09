@@ -4,6 +4,7 @@ import PropertyList from './Components/Home/PropertyList';
 
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import Main from './Components/Home/Main';
+import PropertyDetails from './Components/PropetyDetails/PropertyDetails';
 
 
 function App() {
@@ -16,6 +17,12 @@ function App() {
 
       <Route path='/' element={<Main />} id='main' exact>
         <Route id='home' index element={<PropertyList />} exact />
+        <Route
+          element={<PropertyDetails />}
+          id='PropertyDetails'
+          path='propertylist/:id'
+          exact
+            />
       </Route>
     )
   )
