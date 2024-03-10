@@ -7,7 +7,7 @@ export const getPropertyDetails = (id) => async (dispatch) => {
 
         const response = await axios(`/api/v1/rent/listing/${id}`);
         if (!response) {
-            throw new Error("couldn't fetch any property details")
+            throw new Error("could not fetch any property details")
         }
         const { data } = response.data;
         dispatch(propertyDetailsAction.getPropertyDetails(data))
