@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { UseDispatch, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from "react-toastify";
 import "../../CSS/Login.css";
 import { getLogIn } from "../../Store/User/user-action";
@@ -11,6 +11,7 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const { isAutheticated, errors, loading } = useSelector(
         (state) => state.user
     );
@@ -29,27 +30,52 @@ const Login = () => {
     }, [isAutheticated, errors, navigate]);
 
     return (
-        <div className='row wrapper'>
-            {loading && <LoadingSpinner />}
-            {!loading && (
-                <div className='col-10 col-lg-5'>
-                    <form onSubmit={submitHandle}>
-                        <h1 className='form-group'>Login</h1>
-                        <div className='form-group'>
-                            <label htmlFor='email_field'>Email</label>
-                            <input
-                                type='email'
-                                id='email_field'
-                                className='form-control'
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                    </form>
-                </div>
-            )}
-        </div>
-    )
-}
+        <Fragment>
+            <div className='row wrapper'>
+                {loading && <LoadingSpinner />}
+                {!loading && (
+                    <div className='col-10 col-lg-5'>
+                        <form onSubmit={submitHandle}>
+                            <h1 className='mb-3'>Login</h1>
+                            <div className='form-group'>
+                                <label htmlFor='email_field'>Email</label>
+                                <input
+                                    type='email'
+                                    id='email_field'
+                                    className='form-control'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                            <div className='form-group'>
+                                <label htmlFor='password_field'>Password</label>
+                                <input
+                                    type='password'
+                                    id='password_field'
+                                    className='form-control'
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </div>
+                            <Link to="/user/forgotpassword" className='float-right mb-4'>
+                                Forgot Password
+                            </Link>
+                            <button
+                                id='login_button'
+                                type='submit'
+                                className='loginbutton btn-block py-3'
+                            >
+                                LOGIN
+                            </button>
+                            <Link to="/signup" className='float-right mt-3'>
+                                New user?
+                            </Link>
+                        </form>
+                    </div>
+                )}
+            </div>
+        </Fragment>
+    );
+};
 
 export default Login

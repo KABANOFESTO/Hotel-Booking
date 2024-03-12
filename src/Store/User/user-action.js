@@ -28,7 +28,7 @@ export const getLogIn = (user) => async (dispatch) => {
 
 //get current user information
 
-export const curruntUser = () => async (dispatch) => {
+export const currentUser = () => async (dispatch) => {
     try {
         dispatch(userActions.getCurrentUserRequest());
         const { data } = await axios.get("/api/v1/rent/user/me");

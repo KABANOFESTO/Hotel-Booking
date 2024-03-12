@@ -5,9 +5,23 @@ import PropertyList from './Components/Home/PropertyList';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import Main from './Components/Home/Main';
 import PropertyDetails from './Components/PropetyDetails/PropertyDetails';
-
+import Login from './Components/User/Login';
+import { Flip, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from 'react';
+import { useDispatch, UseDispatch, useSelector } from 'react-redux';
+import { currentUser } from "./Store/User/user-action";
+import { userActions } from './Store/User/user-slice';
 
 function App() {
+  const dispatch = useDispatch();
+  const { errors } = useSelector((state) => state.user);
+  useEffect(() => {
+    if (errors) {
+      dispatch(userActions.clearError());
+    }
+    dispatch(currentUser());
+  },[errors,dispatch]);
   //manages the routing configuration for the application
   const router = createBrowserRouter(
     //creates routes from the elements passed to it.
@@ -22,7 +36,12 @@ function App() {
           id='PropertyDetails'
           path='propertylist/:id'
           exact
-            />
+        />
+        <Route
+        id='login'
+        path='login'
+        element={<Login/>}
+        />
       </Route>
     )
   )
