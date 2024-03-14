@@ -59,11 +59,11 @@ const Header = () => {
                         >
                             {user.avatar.url && (
                                 <img src={user.avatar.url}
-                                    className='"user-img'
+                                    className='user-img'
                                     alt='icon'
                                 />
-                            )}{!user.avatar.url === "" && "account_circle"}
-
+                            )}
+                            {!user.avatar.url === "" && "account_circle"}
                         </span>
                         <ul className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
                             <li>
@@ -72,7 +72,10 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <button className='dropdown-item' type='button' onClick={logout}>
+                                <button
+                                    className='dropdown-item'
+                                    type='button'
+                                    onClick={logout}>
                                     Logout
                                 </button>
                             </li>
