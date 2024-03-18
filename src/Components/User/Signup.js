@@ -7,15 +7,27 @@ import { userActions } from '../../Store/User/user-slice';
 
 const Signup = () => {
     const navigate = useNavigate();
-    const { isAuthenticated, errors } = useSelector((state) => state.user);
     const dispatch = useDispatch();
+    const { isAuthenticated, errors } = useSelector((state) =>state.user);
+
     const [user, setUser] = useState({
         name: "",
         email: "",
         password: "",
-        passwordConfirm: "", // corrected field name
+        passwordConfirm: "",
         phoneNumber: "",
     });
+    const { password, passwordConfirm } = user;
+
+    useEffect(() => {
+        if (errors && errors.length > 0) {
+            toast.error(errors);
+            dispatch(userActions.clearError());
+        } else if (isAuthenticated) {
+            navigate("/");
+            toast.success("User registered successfully");
+        }
+    }, [dispatch, isAuthenticated, errors, navigate]);
 
     const onChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -23,22 +35,12 @@ const Signup = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        if (user.password !== user.passwordConfirm) { // corrected field name
+        if (password !== passwordConfirm) {
             toast.error("Passwords do not match");
             return;
         }
         dispatch(getSignUp(user));
     };
-
-    useEffect(() => {
-        if (errors && errors.length > 0) {
-            toast.error(errors[0]); // Display first error only, or join all errors
-            dispatch(userActions.clearError());
-        } else if (isAuthenticated) {
-            navigate("/");
-            toast.success("User logged in successfully");
-        }
-    }, [dispatch, isAuthenticated, errors, navigate]);
 
     return (
         <>
@@ -67,9 +69,9 @@ const Signup = () => {
                         )
                     )}
                     <button
-                        id='register_button'
-                        type='submit'
-                        className='loginbutton btn-block py-3'
+                        id="register_button"
+                        type="submit"
+                        className="loginbutton btn-block py-3"
                     >
                         REGISTER
                     </button>

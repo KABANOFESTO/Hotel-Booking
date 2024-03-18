@@ -9,7 +9,7 @@ const userSlice = createSlice({
         errors: null,
         success: false,
     },
-    reducer: {
+    reducers: {
         getSignupRequest(state) {
             state.loading = true;
         },
@@ -58,10 +58,10 @@ const userSlice = createSlice({
         },
         clearError(state) {
             state.errors = null;
-        }
+        },
     },
 });
 
 export const userActions = userSlice.actions;
-export default userSlice;
 
+export default userSlice;

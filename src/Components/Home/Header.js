@@ -1,5 +1,5 @@
-import React from 'react'
-import Search from './Search'
+import React from 'react';
+import Search from './Search';
 import Filter from './Filter';
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,10 +7,12 @@ import { propertyAction } from '../../Store/Property/property-slice';
 import { getAllProperties } from '../../Store/Property/property-action';
 import { Logout } from "../../Store/User/user-action";
 import { toast } from "react-toastify";
+import "../../CSS/Home.css";
 
 const Header = () => {
     const dispatch = useDispatch();
     const { isAuthenticated, user } = useSelector((state) => state.user);
+
     const navigate = useNavigate();
 
     const logout = () => {
@@ -19,13 +21,10 @@ const Header = () => {
         navigate("/");
     }
 
-
-
     const allProperties = () => {
         dispatch(propertyAction.updateSearchParams({}));
         dispatch(getAllProperties())
     };
-
 
     return (
         <>
@@ -50,7 +49,8 @@ const Header = () => {
                 )}
                 {isAuthenticated && user && (
                     <div className='dropdown'>
-                        <span className="material-symbols-outlined web_logo dropdown-toggle"
+                        <span
+                            className="material-symbols-outlined web_logo dropdown-toggle"
                             href="#"
                             role='button'
                             id='dropdownMenuLink'
@@ -58,14 +58,15 @@ const Header = () => {
                             aria-expanded='false'
                         >
                             {user.avatar.url && (
-                                <img src={user.avatar.url}
+                                <img
+                                    src={user.avatar.url}
                                     className='user-img'
                                     alt='icon'
                                 />
                             )}
                             {!user.avatar.url === "" && "account_circle"}
                         </span>
-                        <ul className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
+                        <ul className='dropdow-menu' aria-labelledby='dropdownMenuLink'>
                             <li>
                                 <Link className='dropdown-item' to="/profile">
                                     My Account
@@ -75,7 +76,8 @@ const Header = () => {
                                 <button
                                     className='dropdown-item'
                                     type='button'
-                                    onClick={logout}>
+                                    onClick={logout}
+                                >
                                     Logout
                                 </button>
                             </li>
@@ -84,7 +86,7 @@ const Header = () => {
                 )}
             </nav>
         </>
-    )
+    );
 }
 
-export default Header
+export default Header;

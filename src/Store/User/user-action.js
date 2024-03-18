@@ -6,10 +6,12 @@ export const getSignUp = (user) => async (dispatch) => {
     try {
         dispatch(userActions.getSignupRequest());
         const response = await axios.post("/api/v1/rent/user/signup", user);
+        console.log("Signup Response:", response); // Log response
         const data = response.data; // Extract data from response
         dispatch(userActions.getSignupDetails(data.user));
     } catch (error) {
-        dispatch(userActions.getError(error.response.data.message));
+        console.error("Signup Error:", error); // Log error
+        dispatch(userActions.getError(error.response ? error.response.data.message : "Unknown error occurred"));
     }
 };
 
@@ -36,7 +38,11 @@ export const currentUser = () => async (dispatch) => {
             dispatch(userActions.getError("User data not available"));
         }
     } catch (error) {
-        dispatch(userActions.getError(error.message));
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            dispatch(userActions.getError(`Server Error: ${error.response.status}`));
+        }
     }
 };
 
