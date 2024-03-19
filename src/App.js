@@ -7,13 +7,15 @@ import { Flip, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'; // Use BrowserRouter instead of createBrowserRouter
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'; // Use BrowserRouter instead of createBrowserRouter
 import { currentUser } from "./Store/User/user-action";
 import { userActions } from './Store/User/user-slice';
 import Signup from './Components/User/Signup';
 import Profile from './Components/User/Profile';
 import EditProfile from './Components/User/EditProfile';
 import UpdatePassword from './Components/User/UpdatePassword';
+import ForgotPassword from './Components/User/ForgotPassword';
+import ResetPassword from './Components/User/ResetPassword';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +36,9 @@ function App() {
         <Route id='signup' path="signup" element={<Signup />} />
         <Route id='profile' path='profile' element={<Profile />} />
         <Route id='editprofile' path='editprofile' element={<EditProfile />} />
-        <Route id='updatepassoword' path='user/updatepassword' element={<UpdatePassword/>}/>
+        <Route id='updatepassoword' path='user/updatepassword' element={<UpdatePassword />} />
+        <Route id='forgotpassword' path='user/forgotpassword' element={<ForgotPassword />} />
+        <Route id='resetpassword' path='user/resetPassword/:token' element={<ResetPassword />} />
       </Route>
     )
   );

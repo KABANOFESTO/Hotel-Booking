@@ -31,21 +31,12 @@ export const getLogIn = (user) => async (dispatch) => {
 export const currentUser = () => async (dispatch) => {
     try {
         dispatch(userActions.getCurrentUserRequest());
-        const response = await axios.get("/api/v1/rent/user/me");
-        if (response && response.data && response.data.user) {
-            dispatch(userActions.getCurrentUser(response.data.user));
-        } else {
-            dispatch(userActions.getError("User data not available"));
-        }
+        const { data } = await axios.get("/api/v1/rent/user/me");
+        dispatch(userActions.getCurrentUser(data.user));
     } catch (error) {
-        if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            dispatch(userActions.getError(`Server Error: ${error.response.status}`));
-        }
+        dispatch(userActions.getError(error.response.data.message))
     }
 };
-
 
 
 // Function to update user information
@@ -71,6 +62,33 @@ export const updatePassword = (passwords) => async (dispatch) => {
         dispatch(userActions.getPasswordRequest());
         await axios.patch("/api/v1/rent/user/updateMyPassword", passwords);
         dispatch(userActions.getPasswordSuccess(true));
+    } catch (error) {
+        dispatch(userActions.getError(error.response.data.message));
+    }
+};
+
+export const forgotPassword = (email) => async (dispatch) => {
+    try {
+        // Dispatch action to indicate password reset request is being made
+        dispatch(userActions.getPasswordRequest());
+
+        // Send a POST request to your server with the user's email to initiate password reset
+        await axios.post("/api/v1/rent/user/forgotPassword", { email });
+
+        // Dispatch action to indicate successful password reset request
+        dispatch(userActions.getPasswordSuccess(true));
+
+        // Optionally, you can display a success message to the user
+        // toast.success("Password reset link has been sent to your email");
+    } catch (error) {
+        // If an error occurs during the password reset request, dispatch an action with the error message
+        dispatch(userActions.getError(error.response.data.message));
+    }
+};
+
+export const resetPassword = (repassword, token) => async (dispatch) => {
+    try {
+        await axios.patch(`/api/v1/rent/user/resetPassword/${token}`, repassword);
     } catch (error) {
         dispatch(userActions.getError(error.response.data.message));
     }
