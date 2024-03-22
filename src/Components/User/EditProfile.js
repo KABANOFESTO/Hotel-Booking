@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { UseDispatch, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../../Store/User/user-action';
 import { useNavigate } from 'react-router-dom';
-import { Toast, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import "../../CSS/Profile.css";
 import Profile from './Profile';
 

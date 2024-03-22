@@ -5,6 +5,7 @@ const initialState = {
         checkinDate: null,
         checkoutDate: null,
         totalPrice: 0,
+        propertyName:"",
         address: "",
         maximumGuest: 0,
         images: ""

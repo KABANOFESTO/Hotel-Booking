@@ -16,8 +16,17 @@ import EditProfile from './Components/User/EditProfile';
 import UpdatePassword from './Components/User/UpdatePassword';
 import ForgotPassword from './Components/User/ForgotPassword';
 import ResetPassword from './Components/User/ResetPassword';
+import Payment from './Components/Payment/Payment';
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import MyBookings from './Components/Mybookings/MyBookings';
+import BookingDetails from './Components/Mybookings/BookingDetails';
+import AccomodationForm from './Components/Accomodation/AccomodationForm';
+import Accomodation from './Components/Accomodation/Accomodation';
+
 
 function App() {
+  const stripePromise = loadStripe("pk_test_51Ot5LVAWX1CAc3bQix3RhyYnetYHyxLQZfO8Akpv3gQzyqfWyKafbuVmHujsCo7Oa2gD2lj86Q7PA8taFqPwSRQJ00GQEqxRZR");
   const dispatch = useDispatch();
   const { errors } = useSelector((state) => state.user);
 
@@ -39,6 +48,16 @@ function App() {
         <Route id='updatepassoword' path='user/updatepassword' element={<UpdatePassword />} />
         <Route id='forgotpassword' path='user/forgotpassword' element={<ForgotPassword />} />
         <Route id='resetpassword' path='user/resetPassword/:token' element={<ResetPassword />} />
+        <Route id='payment' path='payment/:property'
+          element={
+            <Elements stripe={stripePromise}>
+              <Payment />
+            </Elements>
+          } />
+        <Route id='mybookings' path='user/booking' element={<MyBookings />} />
+        <Route id='bookingdetails' path='user/booking/:bookingId' element={<BookingDetails />} />
+        <Route id='accomodation' path='accommodation' element={<Accomodation />} />
+        <Route id='accomodationform' path='accomodationform' element={<AccomodationForm />} />
       </Route>
     )
   );
