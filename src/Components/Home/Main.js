@@ -1,24 +1,19 @@
-// import react library from react in to this js file
-
-import React from 'react';
-//outlet is used to render the content of nested routes
-import { Outlet } from 'react-router-dom';
+//importing react from library from react in to this js file
+import React from "react";
+//Outlet is used to render the content of nested routes.
+import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-
-//Arrow function
-
+//Arror function short hand way of declare the function
 const Main = () => {
-    return (
-        <div>
-            {/* rendering the Header Components
-             */}
-            <Header />
-            <Outlet />
-            <Footer />
+  return (
+    <div>
+      {/**Rendering the header,footer,outlet component*/}
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default Main
+export default Main;

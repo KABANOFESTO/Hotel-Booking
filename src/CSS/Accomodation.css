@@ -132,6 +132,7 @@ section > input::placeholder {
   border: none;
   margin: 1rem auto;
   color: white;
+  margin-bottom: 3rem;
 }
 
 .checkbox-container > span {

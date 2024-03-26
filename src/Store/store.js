@@ -7,13 +7,13 @@ import bookingSlice from "./Booking/booking-slice";
 import accomodationSlice from "./Accomodation/Accomodation-slice";
 
 const store = configureStore({
-    reducer: {
-        properties: propertySlice.reducer,
-        propertydetails: propertyDetailsSlice.reducer,
-        user: userSlice.reducer,
-        payment: paymentSlice.reducer,
-        booking: bookingSlice.reducer,
-        accomodation: accomodationSlice.reducer,
-    },
+  reducer: {
+    properties: propertySlice.reducer,
+    propertydetails: propertyDetailsSlice.reducer,
+    user: userSlice.reducer,
+    payment: paymentSlice.reducer,
+    booking: bookingSlice.reducer,
+    accomodation: accomodationSlice.reducer,
+  },
 });
 export default store;

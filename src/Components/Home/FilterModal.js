@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from "prop-types"; //for type-checking props
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types"; // for type-checking props
 import "../../CSS/FilterModal.css";
-import "react-input-range/lib/css/index.css";//import Css file for input range styling
+import "react-input-range/lib/css/index.css"; //Importing CSS file for input range styling
 import InputRange from "react-input-range";
 
 const FilterModal = ({ selectedFilters, onFilterChange, onClose }) => {
@@ -9,7 +9,11 @@ const FilterModal = ({ selectedFilters, onFilterChange, onClose }) => {
     min: selectedFilters.priceRange?.min || 600,
     max: selectedFilters.priceRange?.max || 30000,
   });
-  const [propertyType, setPropertyType] = useState(selectedFilters.propertyType || "");//Default it is empty or the selected property type from props
+
+  const [propertyType, setPropertyType] = useState(
+    selectedFilters.propertyType || "" // Default it is empty or the selected property type from props
+  );
+
   const [roomType, setRoomType] = useState(selectedFilters.roomType || "");
   const [amenities, setAmenities] = useState(selectedFilters.amenities || []);
 
@@ -23,165 +27,152 @@ const FilterModal = ({ selectedFilters, onFilterChange, onClose }) => {
     setRoomType(selectedFilters.roomType || "");
     setAmenities(selectedFilters.amenities || []);
   }, [selectedFilters]);
-  //Function to handle changes in price range
-  const handlePriceRangeChange = (value) => {
-    setPriceRange(value) //it will update the price range state
-  }
-  //Function to handle min value
 
-  const handleMinChange = (e) => {
-    const miValue = parseInt(e.target.value, 10);
-    setPriceRange((prev) => ({
-      ...prev,
-      min: miValue
-    }))
+  //Function to handle changes in price Range
+  const handlePriceRangeChange = (value) => {
+    setPriceRange(value); //it will update the price range state
   };
 
-  //Function to handle max value
+  //function to handle min value
+  const handleMinInputChange = (e) => {
+    const minValue = parseInt(e.target.value, 10);
+    setPriceRange((prev) => ({ ...prev, min: minValue }));
+  };
+  //function to handle max value
   const handleMaxInputChange = (e) => {
     const maxValue = parseInt(e.target.value, 10);
-    setPriceRange((prev) => ({
-      ...prev,
-      max: maxValue
-    }));
-  }
-  //Function to handle applying filters
+    setPriceRange((prev) => ({ ...prev, max: maxValue }));
+  };
 
-  const handlFilterChange = (e) => {
+  //function to handle applying filters
+  const handleFilterChange = () => {
     onFilterChange("minPrice", priceRange.min);
-    onFilterChange("minPrice", priceRange.max);
+    onFilterChange("maxPrice", priceRange.max);
     onFilterChange("propertyType", propertyType);
     onFilterChange("roomType", roomType);
     onFilterChange("amenities", amenities);
-    onClose();//closes the modal
+    onClose(); // closes the modal
   };
 
-  //options for property type
+  //Options for property types
+
   const propertyTypeOptions = [
     {
       value: "House",
       label: "House",
-      icon: 'home',
+      icon: "home",
     },
-    {
-      value: "flat",
-      label: "flat",
-      icon: "apartment"
-    },
+    { value: "Flat", label: "Flat", icon: "apartment" },
     {
       value: "Guest House",
       label: "Guest House",
-      icon: "hotel"
+      icon: "hotel",
+    },
+    { value: "Hotel", label: "Hotel", icon: "meeting_room" },
+  ];
+
+  // Options for room types
+  const roomTypeOptions = [
+    {
+      value: "Entire Room",
+      label: "Entire Room",
+      icon: "hotel",
     },
     {
-      value: "Hotel",
-      label: "Hotel",
-      icon: "meeting_room"
+      value: "Room",
+      label: "Room",
+      icon: "meeting_room",
+    },
+    {
+      value: "AnyType",
+      label: "AnyType",
+      icon: "apartment",
     },
   ];
 
-  //Options for room types
-
-  const rooTypeOptions = [{
-    value: "Entire Room",
-    label: "Entire Room",
-    icon: "hotel"
-  },
-  {
-    value: "Room",
-    label: "Room",
-    icon: "meeting_room"
-  },
-  {
-    value: "AnyType",
-    label: "Anytype",
-    icon: "apartment"
-  },
-  ];
-
-  //Options for Amenities
+  //Options for amenities
 
   const amenitiesOptions = [
     {
-      value: "wifi",
-      label: "wifi",
-      icon: "wifi"
+      value: "Wifi",
+      label: "Wifi",
+      icon: "wifi",
     },
     {
       value: "Kitchen",
       label: "Kitchen",
-      icon: "kitchen"
+      icon: "kitchen",
     },
     {
       value: "Ac",
       label: "AC",
-      icon: "ac_unit"
+      icon: "ac_unit",
     },
     {
       value: "Washing Machine",
       label: "Washing Machine",
-      icon: "local_laundry_service"
+      icon: "local_laundry_service",
     },
     {
       value: "Tv",
       label: "Tv",
-      icon: "tv"
+      icon: "tv",
     },
     {
       value: "Pool",
       label: "Pool",
-      icon: "pool"
+      icon: "pool",
     },
     {
       value: "Free Parking",
       label: "Free parking",
-      icon: "local_parking"
-    }
+      icon: "local_parking",
+    },
   ];
 
   //function to handle clearing filters
   const handleClearFilters = () => {
-    setPriceRange({ min: 600, max: 30000 });
+    setPriceRange({ min: 600, max: 30000 }); // reset the price range
     setPropertyType("");
     setRoomType("");
     setAmenities([]);
   };
 
-  //finction to handle changes in amenities
-
+  // function to handle changes in amenities
   const handleAmenitiesChange = (selectedAmenity) => {
-    setAmenities((prevAmenities) => prevAmenities.includes(selectedAmenity) ? prevAmenities.filter((item) =>
-      item !== selectedAmenity
-    ) : [...prevAmenities, selectedAmenity]);
+    setAmenities((prevAmenities) =>
+      prevAmenities.includes(selectedAmenity)
+        ? prevAmenities.filter((item) => item !== selectedAmenity)
+        : [...prevAmenities, selectedAmenity]
+    );
   };
 
-  //Function to handle changes in property type
-
+  // function to handle changes in propertyType
   const handlePropertyTypeChange = (selectedType) => {
     setPropertyType((prevType) =>
       prevType === selectedType ? "" : selectedType
-    )
-  }
-  //Function to handle roomType
-  const handleRoomTypeChange = (selectedType) => {
-    setRoomType((prevType) =>
-      prevType === selectedType ? "" : selectedType
     );
-  }
+  };
+
+  //function to handle room type
+  const handleRoomTypeChange = (selectedType) => {
+    setRoomType((prevType) => (prevType === selectedType ? "" : selectedType));
+  };
 
   return (
-    <div className='modal-backdrop'>
-      <div className='modal-content'>
+    <div className="modal-backdrop">
+      <div className="modal-content">
         <h4>
-          Filters<hr />
+          Filters <hr />
         </h4>
         {/* close button */}
-        <button className='close-button' onClick={onClose}>
+        <button className="close-button" onClick={onClose}>
           <span>&times;</span>
         </button>
-        {/* filter section  */}
-        <div className='modal-filters-container'>
-          <div className='filter-section'>
+
+        {/* Filter sections */}
+        <div className="modal-filters-container">
+          <div className="filter-section">
             <label>Price range:</label>
             <InputRange
               minValue={600}
@@ -189,83 +180,88 @@ const FilterModal = ({ selectedFilters, onFilterChange, onClose }) => {
               value={priceRange}
               onChange={handlePriceRangeChange}
             />
-            <div className='range-inputs'>
+            <div className="range-inputs">
               <input
-                type='number'
+                type="number"
                 value={priceRange.min}
-                onChange={handleMinChange}
+                onChange={handleMinInputChange}
               />
-              <span></span>
+              <span>-</span>
               <input
-                type='number'
+                type="number"
                 value={priceRange.max}
                 onChange={handleMaxInputChange}
               />
             </div>
           </div>
-          {/* PropTypes filter  */}
-          <div className='filter-section'>
-            <label>Property type:</label>
-            <div className='icon-box'>
-              {propertyTypeOptions.map((Options) => (
-                <div key={Options.value}
-                  className={`selectable-box ${propertyType === Options.value ? "selected" : ""}`}
-                  onClick={() => handlePropertyTypeChange(Options.value)}
 
+          {/* Property type filter */}
+          <div className="filter-section">
+            <label>Property Type: </label>
+            <div className="icon-box">
+              {propertyTypeOptions.map((options) => (
+                <div
+                  key={options.value}
+                  className={`selectable-box ${
+                    propertyType === options.value ? "selected" : ""
+                  }`}
+                  onClick={() => handlePropertyTypeChange(options.value)}
                 >
-                  <span className='material-icons'>{Options.icon}</span>
-                  <span>{Options.label}</span>
+                  <span className="material-icons">{options.icon}</span>
+                  <span>{options.label}</span>
                 </div>
               ))}
             </div>
           </div>
-          {/* Room type filter   */}
-          <div className='filter-section'>
-            <label>Room type:</label>
-            <div className='icon-box'>
-              {rooTypeOptions.map((Options) => (
+
+          {/* Room type filter */}
+          <div className="filter-section">
+            <label>Room Type:</label>
+            <div className="icon-box">
+              {roomTypeOptions.map((option) => (
                 <div
-                  key={Options.value}
-                  className={`selectable-box ${roomType === Options.value ? "selected" : ""
-                    }`}
-                  onClick={() => handleRoomTypeChange(Options.value)}
+                  key={option.value}
+                  className={`selectable-box ${
+                    roomType === option.value ? "selected" : ""
+                  }`}
+                  onClick={() => handleRoomTypeChange(option.value)}
                 >
-                  <span className='material-icons'>{Options.icon}</span>
-                  <span>{Options.label}</span>
+                  <span className="material-icons">{option.icon}</span>
+                  <span>{option.label}</span>
                 </div>
               ))}
             </div>
           </div>
-          {/* Amenities Filter  */}
-          <div className='filter-section'>
-            <label>Amenities</label>
-            <div className='amenities-checkboxes'>
-              {amenitiesOptions.map((Options) => (
-                <div
-                  key={Options.value}
-                  className="amenity-checkbox">
-                  {console.log(amenities.includes(Options.value))
-                  }
+
+          {/* Amenities Filter */}
+          <div className="filter-section">
+            <label>Amenities :</label>
+            <div className="amenities-checkboxes">
+              {amenitiesOptions.map((option) => (
+                <div key={option.value} className="amenity-checkbox">
+                  {console.log(amenities.includes(option.value))}
+
                   <input
-                    type='checkbox'
-                    value={Options.value}
-                    checked={amenities.includes(Options.value)}
-                    onChange={() => handleAmenitiesChange(Options.value)}
+                    type="checkbox"
+                    value={option.value}
+                    checked={amenities.includes(option.value)}
+                    onChange={() => handleAmenitiesChange(option.value)}
                   />
-                  <span className='material-icons amenitieslabel'>{Options.icon}</span>
-                  <span>{Options.label}</span>
+                  <span className="material-icons amenitieslabel">
+                    {option.icon}
+                  </span>
+                  <span>{option.label}</span>
                 </div>
               ))}
             </div>
           </div>
-          {/* Filter action button  */}
-          <div className='filter-buttons'>
-            <button className='clear-button' onClick={handleClearFilters}>
+
+          {/* Filter action buttons */}
+          <div className="filter-buttons">
+            <button className="clear-button" onClick={handleClearFilters}>
               Clear
             </button>
-            <button onClick={handlFilterChange}>
-              Apply Filters
-            </button>
+            <button onClick={handleFilterChange}>Apply Filters</button>
           </div>
         </div>
       </div>
@@ -273,10 +269,10 @@ const FilterModal = ({ selectedFilters, onFilterChange, onClose }) => {
   );
 };
 
-FilterModal.prototype = {
+FilterModal.propTypes = {
   selectedFilters: PropTypes.object.isRequired,
   onFilterChange: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
-}
+};
 
 export default FilterModal;

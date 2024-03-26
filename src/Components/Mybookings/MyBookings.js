@@ -3,7 +3,10 @@ import "../../CSS/MyBookings.css";
 import ProgressSteps from "../ProgressSteps";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUserBookings, fetchBookingDetails } from "../../Store/Booking/booking-action";
+import {
+  fetchUserBookings,
+  fetchBookingDetails,
+} from "../../Store/Booking/booking-action";
 import LoadingSpinner from "../LoadingSpinner";
 
 const MyBookings = () => {
@@ -11,8 +14,9 @@ const MyBookings = () => {
   const navigate = useNavigate();
   const { bookings, loading } = useSelector((state) => state.booking);
   useEffect(() => {
-    dispatch(fetchUserBookings())
+    dispatch(fetchUserBookings());
   }, [dispatch]);
+
   const handleBookingClick = (bookingId) => {
     dispatch(fetchBookingDetails(bookingId));
     navigate(`/user/booking/${bookingId}`);
@@ -41,7 +45,7 @@ const MyBookings = () => {
                       className="booking-img"
                       src={
                         booking.property.images &&
-                          booking.property.images.length > 0
+                        booking.property.images.length > 0
                           ? booking.property.images[0].url
                           : undefined
                       }

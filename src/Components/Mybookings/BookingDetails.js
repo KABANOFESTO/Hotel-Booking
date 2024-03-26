@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import "../../CSS/BookingDetails.css";
-import PropertyImg from "../PropetyDetails/PropertyImg";
-import { UseDispatch, useDispatch, useSelector } from "react-redux";
+import PropertyImg from "../PropertyDetails/PropertyImg";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchBookingDetails } from "../../Store/Booking/booking-action";
-
 
 const BookingDetails = () => {
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ const BookingDetails = () => {
     dispatch(fetchBookingDetails(bookingId));
   }, [dispatch, bookingId]);
   if (!bookingDetails || !bookingDetails.property) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
