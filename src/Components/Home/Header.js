@@ -7,7 +7,6 @@ import { propertyAction } from '../../Store/Property/property-slice';
 import { getAllProperties } from '../../Store/Property/property-action';
 import { Logout } from "../../Store/User/user-action";
 import { toast } from "react-toastify";
-import "../../CSS/Home.css";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -66,7 +65,7 @@ const Header = () => {
                             )}
                             {!user.avatar.url === "" && "account_circle"}
                         </span>
-                        <ul className='dropdow-menu' aria-labelledby='dropdownMenuLink'>
+                        <ul className='dropdown-men' aria-labelledby='dropdownMenuLink'>
                             <li>
                                 <Link className='dropdown-item' to="/profile">
                                     My Account
