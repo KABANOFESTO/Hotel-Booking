@@ -11,7 +11,7 @@ const Footer = () => {
           <li>Privacy</li>
           <li>Terms</li>
           <li>Sitemap</li>
-          <li>Comapany details</li>
+          <li>Company details</li>
         </ul>
 
         <p>English(IN) ₹ INR</p>

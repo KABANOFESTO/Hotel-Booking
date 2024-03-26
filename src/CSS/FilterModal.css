@@ -33,7 +33,7 @@
   border-radius: 5px;
   width: 50rem;
   font-family: "Poppins", sans-serif;
-  overflow-y: auto;
+  overflow-y:auto ;
   position: relative;
   max-height: 95vh;
 }

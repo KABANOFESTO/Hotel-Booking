@@ -44,6 +44,7 @@ const Payment = () => {
     dispatch,
     navigate,
   });
+
   return (
     <div className="row wrapper">
       <div className="col-10 col-lg-5">
@@ -79,7 +80,7 @@ const Payment = () => {
               />
             </div>
             <button type="submit" className="paymentbtn">
-              Pay - {totalPrice}
+              Pay-{totalPrice}
             </button>
           </form>
         ) : (

@@ -3,7 +3,6 @@
   margin: 10px;
   padding: 0px 0.6rem;
   color: black;
-  height: auto;
 }
 
 .details-location {
@@ -66,8 +65,4 @@
   font-size: 24px;
   margin: 0px;
   padding: 0px;
-}
-
-.propertyimg-container {
-  padding: 1rem 0.3rem 5rem 1rem;
 }

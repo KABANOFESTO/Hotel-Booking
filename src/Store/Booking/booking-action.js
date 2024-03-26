@@ -1,6 +1,8 @@
 import axios from "axios";
 import { addBooking, setBookings, setBookingDetails } from "./booking-slice";
 
+
+
 export const createBooking = (bookingDate) => async (dispatch) => {
   try {
     const response = await axios.post(

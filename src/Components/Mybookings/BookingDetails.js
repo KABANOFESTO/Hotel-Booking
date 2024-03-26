@@ -1,21 +1,31 @@
 import React, { useEffect } from "react";
 import "../../CSS/BookingDetails.css";
 import PropertyImg from "../PropertyDetails/PropertyImg";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchBookingDetails } from "../../Store/Booking/booking-action";
 
 const BookingDetails = () => {
-  const dispatch = useDispatch();
-  const { bookingId } = useParams();
-  const { bookingDetails } = useSelector((state) => state.booking);
+  const dispatch=useDispatch();
+  const {bookingId}=useParams();
+  const {bookingDetails}=useSelector((state)=>state.booking);
 
-  useEffect(() => {
+  useEffect(()=>{
     dispatch(fetchBookingDetails(bookingId));
-  }, [dispatch, bookingId]);
-  if (!bookingDetails || !bookingDetails.property) {
-    return <div>Loading...</div>;
+ 
+  },[dispatch,bookingId]);
+  if(!bookingDetails || !bookingDetails.property){
+    return <div>
+      Loading...
+    </div>;
   }
+
+
+
+
+
+
+
 
   return (
     <div className="details-container">

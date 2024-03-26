@@ -13,7 +13,6 @@ const PropertyDetails = () => {
   const { id } = useParams();
   const { propertydetails } = useSelector((state) => state.propertydetails);
   console.log(propertydetails);
-
   useEffect(() => {
     dispatch(getPropertyDetails(id));
   }, [dispatch, id]);
@@ -31,28 +30,26 @@ const PropertyDetails = () => {
   } = propertydetails;
 
   return (
-    <div className="property-container">
+    <div className='property-container'>
       {propertyName && (
         <>
-          <p className="property-header">{propertyName}</p>
-          <h6 className="property-location">
-            <span class="material-symbols-outlined">house</span>
-            <span className="location">{`${address.area}, ${address.city}, ${address.pincode}, ${address.state}`}</span>
+          <p className='property-header'>{propertyName}</p>
+          <h6 className='property-location'>
+            <span className='material-symbols-outlined'>house</span>
+            <span className='location'>{` ${address.area}, ${address.city}, ${address.pincode}, ${address.state}`}</span>
           </h6>
           <PropertyImg images={images} />
-          <div className="middle-container row">
-            <div className="des-and-amenities col-md-8 col-sm-12 col-12">
-              <h2 className="property-description-header"> Description</h2>
-              <p className="property-description">
-                {description} <br /> <br />
-                Max number of Guests: {maximumGuest} <br /> <br />
+          <div className='middle-container row'>
+            <div className='des-and-amenities col-md-8 col-sm-12 col-12'>
+              <h2 className='property-description-header'>Description</h2>
+              <p className='property-description'>
+                {description} <br></br>
+                <br></br>Max number of guests : {maximumGuest}
               </p>
-              <hr />
+              <hr></hr>
               <PropertyAmenities amenities={amenities} />
-              <br /> <br />
             </div>
-
-            <div className="property-payment col-md-4 col-sm-12 col-12">
+            <div className='property-payment col-md-4 col-sm-12 col-12'>
               <BookingForm
                 propertyId={id}
                 price={price}
@@ -63,17 +60,17 @@ const PropertyDetails = () => {
               />
             </div>
           </div>
-
           <hr></hr>
-          <div className="property-map">
-            <div className="map-image-exinfo-container row">
-              <div className="map-image-container col-md-6 col-sm-12 col-12">
-                <h2 className="map-header"> Where you will be</h2>
+          <div className='property-map'>
+            <div className='map-image-exinfo-container row'>
+              <div className='map-image-container col-md-6 col-sm-12 col-12'>
+                <h2 className='map-header'>Where you'll be</h2>
+
                 <MapComponent address={address} />
               </div>
-              <div className="extra-info col-md-6 col-sm-12 col-12">
-                <h2 className="extra-heading">Extra Info</h2>
-                <p className="extra-description"> {extraInfo}</p>
+              <div className='extra-info col-md-6 col-sm-12 col-12'>
+                <h2 className='extra-heading'>Extra Info</h2>
+                <p className='extra-description'>{extraInfo}</p>
               </div>
             </div>
           </div>

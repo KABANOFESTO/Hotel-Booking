@@ -3,7 +3,6 @@ import axios from "axios";
 import { propertyAction } from "./property-slice";
 
 //action creator to fetch properties
-
 export const getAllProperties = () => async (dispatch, getState) => {
   try {
     dispatch(propertyAction.getRequest());
@@ -14,7 +13,6 @@ export const getAllProperties = () => async (dispatch, getState) => {
       params: { ...searchParams },
     });
 
-    console.log(response);
     if (!response) {
       throw new Error("Could not fetch any properties");
     }

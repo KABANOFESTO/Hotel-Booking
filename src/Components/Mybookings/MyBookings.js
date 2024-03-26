@@ -2,30 +2,27 @@ import React, { useEffect } from "react";
 import "../../CSS/MyBookings.css";
 import ProgressSteps from "../ProgressSteps";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchUserBookings,
-  fetchBookingDetails,
-} from "../../Store/Booking/booking-action";
+import { useSelector,useDispatch } from "react-redux";
+import { fetchUserBookings,
+fetchBookingDetails } from "../../Store/Booking/booking-action";
 import LoadingSpinner from "../LoadingSpinner";
 
 const MyBookings = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { bookings, loading } = useSelector((state) => state.booking);
-  useEffect(() => {
-    dispatch(fetchUserBookings());
-  }, [dispatch]);
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
+  const {bookings,loading}=useSelector((state)=>state.booking);
+   useEffect(()=>{
+      dispatch(fetchUserBookings());
 
-  const handleBookingClick = (bookingId) => {
+   },[dispatch]);
+
+   const handleBookingClick=(bookingId)=>{
     dispatch(fetchBookingDetails(bookingId));
     navigate(`/user/booking/${bookingId}`);
-  };
-
-  if (bookings.length === 0 && !loading) {
-    return <div>My Bookings are not available....</div>;
-  }
-
+   };
+   if(bookings.length===0 && !loading){
+   return<div>My Bookings are not available</div>
+   }
   return (
     <>
       <ProgressSteps />

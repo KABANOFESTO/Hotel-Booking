@@ -7,6 +7,7 @@
   justify-content: space-evenly;
   background: #ffff;
 }
+
 .header img[alt="logo"] {
   object-fit: contain;
   height: 80%;
@@ -32,6 +33,7 @@
   display: flex;
   box-shadow: 1px 1px 10px lightgray;
 }
+
 .search {
   border: transparent;
   border-radius: 25px;
@@ -39,27 +41,34 @@
   width: 35%;
   padding: 1rem;
 }
+
 .search:nth-child(2) {
   padding: 0%;
 }
+
 .search:nth-child(3) {
   width: 20%;
 }
+
 .date_picker {
   border: transparent;
   border-radius: 25px;
 }
+
 input:hover::placeholder {
   color: green;
 }
+
 input::placeholder {
   color: rgba(1, 1, 1, 0.512);
 
   font-size: large;
 }
+
 .searchicon:hover {
   box-shadow: 2px 2px 5px black;
 }
+
 .search:hover,
 .date_picker:hover {
   background-color: rgba(149, 139, 139, 0.318);
@@ -93,6 +102,7 @@ input::placeholder {
   width: 95%;
   height: auto;
 }
+
 .property {
   position: relative;
   width: 100%;
@@ -114,9 +124,11 @@ input::placeholder {
   font-size: 0.9rem;
   text-align: center;
 }
+
 .property:hover {
   box-shadow: 4px 4px 20px rgba(15, 15, 15, 0.81);
 }
+
 .property figcaption {
   position: absolute;
   inset: 0;
@@ -185,18 +197,25 @@ footer {
   padding-left: 0px;
 }
 
-.dropdown:hover > #dropdownMenuLink {
-  background-color: lightgrey;
-}
-
 .dropdown-toggle::after {
   font-size: 1.5rem;
-  transform: rotate(-90deg); /* Adjust the rotation angle as needed */
+  transform: rotate(-90deg);
+  /* Adjust the rotation angle as needed */
 }
 
 .dropdown-toggle:hover::after {
   transform: rotate(0);
 }
+
+.dropdown:hover .dropdown-menu {
+  margin-top: -10%;
+  display: block;
+}
+
+
+/* .dropdown-menu {
+  display: block;
+} */
 
 .user-img {
   width: 50px;
@@ -224,12 +243,14 @@ footer {
   height: 3rem;
   width: 3rem;
 }
+
 .pagination button:nth-child(1) {
   background: linear-gradient(to right, #0e8b53, #0e8b53);
   transition: background-size 0.2s;
   background-size: 0% 100%;
   background-repeat: no-repeat;
 }
+
 .pagination button:nth-child(2) {
   background: linear-gradient(to left, #0e8b53, #0e8b53) right;
   transition: background-size 0.2s;
@@ -274,7 +295,3 @@ footer {
   margin: 5% auto;
   text-align: center;
 }
-.dropdown-menu{
-  display: block;
-}
-
