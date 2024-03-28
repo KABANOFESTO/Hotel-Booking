@@ -28,10 +28,13 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import MyBookings from "./Components/Mybookings/MyBookings";
 import BookingDetails from "./Components/Mybookings/BookingDetails";
+import AccomodationForm from './Components/Accomodation/AccomodationForm';
+import Accomodation from './Components/Accomodation/Accomodation';
+
 
 function App() {
   const stripePromise = loadStripe(
-    "pk_test_51OvxIOSIMNKAxos1W8k8AiCiYylgAC0VKU9slZy5pQCvQnNDqX5QdChRMgy8HCetyRie8aW2sLAKaYKGe3KornHP00uuGzHNit"
+    "pk_test_51Ot5LVAWX1CAc3bQix3RhyYnetYHyxLQZfO8Akpv3gQzyqfWyKafbuVmHujsCo7Oa2gD2lj86Q7PA8taFqPwSRQJ00GQEqxRZR"
   );
   const dispatch = useDispatch();
   const { errors } = useSelector((state) => state.user);
@@ -90,6 +93,8 @@ function App() {
           path="user/booking/:bookingId"
           element={<BookingDetails />}
         />
+        <Route id='accomodation' path='accommodation' element={<Accomodation />} />
+        <Route id='accomodationform' path='accomodationform' element={<AccomodationForm />} />
       </Route>
     )
   );

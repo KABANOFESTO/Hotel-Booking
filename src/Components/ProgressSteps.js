@@ -16,7 +16,7 @@ const ProgressSteps = () => {
     const progressButtons=[
         { to:"/profile",text:"My Profile"},
         { to:"/user/booking",text:"My Bookings"},
-        { to:"/accomodation",text:"My Accomodations"},
+        { to:"/accommodation",text:"My Accomodations"},
 
     ];
   return (
